@@ -1,18 +1,7 @@
-<nav class="mt-2">
-    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-        <li class="nav-item">
-            <a href="/" class="nav-link">
-                <i class="nav-icon fas fa-home"></i>
-                <p>Home</p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="/user" class="nav-link">
-                <i class="fas fa-user nav-icon"></i>
-                <p>User</p>
-            </a>
-        </li>
-    </ul>
-</nav>
+<ul class="sidebar-menu" data-widget="tree">
+    <li class="header">MAIN NAVIGATION</li>
+    <li><a href="/"><i class="fa fa-home"></i> <span>Home</span></a>
+    <li><a href="/user"><i class="fa fa-user"></i> <span>User</span></a>
+    <li><a href="/buku"><i class="fa fa-book"></i> <span>Buku</span></a>
+    </li>
+</ul>

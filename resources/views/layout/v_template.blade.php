@@ -1,155 +1,134 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Page | @yield('title')</title>
-
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdminLTE 2 | @yield('title')</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="{{asset('template/')}}/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{asset('template')}}/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="{{asset('template/')}}/bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="{{asset('template/')}}/bower_components/Ionicons/css/ionicons.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{asset('template')}}/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="{{asset('template/')}}/dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="{{asset('template/')}}/dist/css/skins/_all-skins.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+    <!-- Google Font -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
-        <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-            <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>
-            </ul>
 
-            <!-- SEARCH FORM -->
-            <form class="form-inline ml-3">
-                <div class="input-group input-group-sm">
-                    <input class="form-control form-control-navbar" type="search" placeholder="Search"
-                        aria-label="Search">
-                    <div class="input-group-append">
-                        <button class="btn btn-navbar" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="{{asset('template/')}}/index2.html" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>A</b>LT</span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>Admin</b>LTE</span>
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
 
-            <!-- Right navbar links -->
-            <ul class="navbar-nav ml-auto">
-                <!-- Messages Dropdown Menu -->
+                        <!-- User Account: style can be found in dropdown.less -->
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="{{asset('template/')}}/dist/img/user.png" class="user-image" alt="User Image">
+                                <span class="hidden-xs">{{ Auth::user()->name }}</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- User image -->
+                                <li class="user-header">
+                                    <img src="{{asset('template/')}}/dist/img/user.png" class="img-circle"
+                                        alt="User Image">
 
-                <!-- Notifications Dropdown Menu -->
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                        <i class="fas fa-expand-arrows-alt"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                        <i class="fas fa-th-large"></i>
-                    </a>
-                </li>
+                                    <p>
+                                        {{ Auth::user()->name }} - {{ Auth::user()->email }}
+                                        <small>Member since 2021</small>
+                                    </p>
+                                </li>
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-right">
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">
+                                            @csrf
+                                            <button type="submit" class="btn btn-default btn-flat">Log out</button>
+                                        </form>
 
-                <li class="nav-item dropdown user-menu">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                        <img src="{{asset('template')}}/dist/img/user2-160x160.jpg"
-                            class="user-image img-circle elevation-2" alt="User Image">
-                        <span class="d-none d-md-inline">Alexander Pierce</span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <li class="user-header bg-primary">
-                            <img src="{{asset('template')}}/dist/img/user2-160x160.jpg" class="img-circle elevation-2"
-                                alt="User Image">
-
-                            <p>
-                                Alexander Pierce - Web Developer
-                                <small>Member since Nov. 2012</small>
-                            </p>
+                                    </div>
+                                </li>
+                            </ul>
                         </li>
-                        <!-- Menu Body -->
-                        <li class="user-body">
-                            <div class="row">
-                                <div class="col-4 text-center">
-                                    <a href="#">Followers</a>
-                                </div>
-                                <div class="col-4 text-center">
-                                    <a href="#">Sales</a>
-                                </div>
-                                <div class="col-4 text-center">
-                                    <a href="#">Friends</a>
-                                </div>
-                            </div>
-                            <!-- /.row -->
-                        </li>
-                        <!-- Menu Footer-->
-                        <li class="user-footer">
-                            <a href="#" class="btn btn-default btn-flat">Profile</a>
-                            <a href="#" class="btn btn-default btn-flat float-right">Log out</a>
-                        </li>
-
+                        <!-- Control Sidebar Toggle Button -->
                     </ul>
-        </nav>
-        <!-- /.navbar -->
+                </div>
+            </nav>
+        </header>
 
-        <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <!-- Brand Logo -->
+        <!-- =============================================== -->
 
-            <!-- Sidebar -->
-            <div class="sidebar">
-                <!-- Sidebar user (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="{{asset('template')}}/dist/img/krisna.jpg" class="img-circle elevation-2"
-                            alt="User Image">
+        <!-- Left side column. contains the sidebar -->
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="{{asset('template/')}}/dist/img/user.png" class="img-circle" alt="User Image">
                     </div>
-                    <div class="info">
-                        <a href="#" class="d-block">Ngakan Krisna</a>
+                    <div class="pull-left info">
+                        <p>{{ Auth::user()->name }}</p>
+                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                     </div>
                 </div>
-
-                <!-- SidebarSearch Form -->
-                <div class="form-inline">
-                    <div class="input-group" data-widget="sidebar-search">
-                        <input class="form-control form-control-sidebar" type="search" placeholder="Search"
-                            aria-label="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-sidebar">
-                                <i class="fas fa-search fa-fw"></i>
+                <!-- search form -->
+                <form action="#" method="get" class="sidebar-form">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                            <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i
+                                    class="fa fa-search"></i>
                             </button>
-                        </div>
+                        </span>
                     </div>
-                </div>
-
-                <!-- Sidebar Menu -->
-
+                </form>
+                <!-- /.search form -->
+                <!-- sidebar menu: : style can be found in sidebar.less -->
                 @include('layout.v_nav')
-
-                <!-- /.sidebar-menu -->
-            </div>
+            </section>
             <!-- /.sidebar -->
         </aside>
 
+        <!-- =============================================== -->
+
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            @yield('title')
-                        </div>
-
-                    </div>
-                </div><!-- /.container-fluid -->
-            </section>
-
             <!-- Main content -->
             <section class="content">
 
@@ -161,28 +140,32 @@
         <!-- /.content-wrapper -->
 
         <footer class="main-footer">
-            <div class="float-right d-none d-sm-block">
-                <b>Version</b> 3.1.0-rc
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 2.4.18
             </div>
-            <strong>Copyright &copy; 2021 <a href="https://adminlte.io"></a>.</strong>
+            <strong>Copyright &copy; 2021 <a href="https://adminlte.io">AdminLTE</a>.</strong> All rights
+            reserved.
         </footer>
-
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-        </aside>
-        <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
 
-    <!-- jQuery -->
-    <script src="{{asset('template')}}/plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="{{asset('template')}}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery 3 -->
+    <script src="{{asset('template/')}}/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="{{asset('template/')}}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- SlimScroll -->
+    <script src="{{asset('template/')}}/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="{{asset('template/')}}/bower_components/fastclick/lib/fastclick.js"></script>
     <!-- AdminLTE App -->
-    <script src="{{asset('template')}}/dist/js/adminlte.min.js"></script>
+    <script src="{{asset('template/')}}/dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="{{asset('template')}}/dist/js/demo.js"></script>
+    <script src="{{asset('template/')}}/dist/js/demo.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.sidebar-menu').tree()
+    })
+    </script>
 </body>
 
 </html>
