@@ -13,11 +13,13 @@ class BukuController extends Controller
         $this->BukuModel = new BukuModel();
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $data = [
             'buku' => $this->BukuModel->allData(),
+
         ];
+
         return view('v_buku', $data);
     }
 
@@ -34,13 +36,13 @@ class BukuController extends Controller
 
     public function add()
     {
-        return view('v_addbuku');
+        return view('v_addbuku', compact('jenis'));
     }
 
     public function insert()
     {
         Request()->validate([
-            'judul_buku' => 'required|unique:tb_buku,judul_buku|min:1|max:255',
+            'judul_buku' => 'required|unique:buku_models,judul_buku|min:1|max:255',
             'penulis' => 'required',
             'penerbit' => 'required',
             'sampul_buku' => 'required|mimes:jpg,jpeg,bmp,png|max:1024',
@@ -119,5 +121,13 @@ class BukuController extends Controller
         }
         $this->BukuModel->deleteData($id_buku);
         return redirect()->route('buku')->with('pesan', 'Data Berhasil Di Hapus !!!');
+    }
+
+    public function cari(Request $request)
+    {
+        $cari = $request->search;
+
+        $buku = BukuModel::where('judul_buku', 'like', '%' . $cari . '%')->get();
+        return view('v_buku', ['buku' => $buku]);
     }
 }

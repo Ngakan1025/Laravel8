@@ -10,26 +10,26 @@ class BukuModel extends Model
 {
     public function allData()
     {
-        return DB::table('tb_buku')->get();
+        return DB::table('buku_models')->get();
     }
 
     public function detailBuku($id_buku)
     {
-        return DB::table('tb_buku')->where('id_buku', $id_buku)->first();
+        return DB::table('buku_models')->where('id_buku', $id_buku)->first();
     }
 
     public function addData($data)
     {
-        DB::table('tb_buku')->insert($data);
+        DB::table('buku_models')->insert($data);
     }
 
     public function editData($id_buku, $data)
     {
-        DB::table('tb_buku')->where('id_buku', $id_buku)->update($data);
+        DB::table('buku_models')->where('id_buku', $id_buku)->update($data);
     }
 
     public function deleteData($id_buku)
     {
-        DB::table('tb_buku')->where('id_buku', $id_buku)->delete();
+        DB::table('buku_models')->where('id_buku', $id_buku)->delete();
     }
 }
