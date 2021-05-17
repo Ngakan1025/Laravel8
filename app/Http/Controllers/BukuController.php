@@ -36,7 +36,7 @@ class BukuController extends Controller
 
     public function add()
     {
-        return view('v_addbuku', compact('jenis'));
+        return view('v_addbuku');
     }
 
     public function insert()
